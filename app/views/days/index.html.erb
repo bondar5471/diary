@@ -10,8 +10,8 @@
   <tbody>
       <% @days.each do |day| %>
         <tr>
-          <td><%= day.date %></td>
-          <td><%= day.successfull %></td>
+          <td><%= day.date.try(:strftime, '%B %d, %Y') %></td>
+          <td><%= day.successful %></td>
           <td><%= day.report %></td>
           <td><%= link_to "Show", day %></td>
           <td><%= link_to "Edit", edit_day_path(day) %></td>

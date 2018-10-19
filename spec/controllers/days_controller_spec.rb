@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe DaysController, type: :controller do
@@ -26,8 +28,6 @@ RSpec.describe DaysController, type: :controller do
   end
 
   describe 'GET #new' do
-
-
     before { get :new }
     it 'assign a new Day to @day' do
       expect(assigns(:day)).to be_a_new(Day)
@@ -38,7 +38,6 @@ RSpec.describe DaysController, type: :controller do
     end
   end
   describe 'GET #edit' do
-
     before { get :edit, params: { id: day } }
 
     it 'assigns the  requested to @day' do
@@ -47,7 +46,6 @@ RSpec.describe DaysController, type: :controller do
   end
 
   describe 'POST #create' do
-
     context 'with valid attributes' do
       it 'save the new day the database' do
         expect { post :create, params: { day: attributes_for(:day) } }.to change(Day, :count).by(1)

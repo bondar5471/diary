@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+/*all text*/
+
+h1 {
+  font-family: 'Courier New', Courier, monospace               
+}
+h2 {
+  font-family: 'Courier New', Courier, monospace
+}
+p {
+  font-family: 'Courier New', Courier, monospace  
+}
+body {
+    background-color: #E0FFFF
+
+}
