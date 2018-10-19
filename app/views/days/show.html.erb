@@ -1,7 +1,9 @@
-<h2>Day</h2>
-<%= @day.date.try(:strftime, '%B %d, %Y') %>
-<br>
-<%= @day.successful %>
-<br>
-<%= @day.report %>
-<%= link_to  "Back", days_path %>
+<div class="container">
+  <h2>Day</h2>
+	<%= @day.date.try(:strftime, '%B %d, %Y') %>
+	<br>
+	<%= @day.successful %>
+	<br>
+	<%= @day.report %>
+	<%= link_to  "Back", days_path %>
+</div>

@@ -19,6 +19,7 @@ class DaysController < ApplicationController
       flash[:success] = 'Day create.'
       redirect_to days_path
     else
+      flash[:success] = 'Date and Report must be filled.'
       render :new
     end
   end
