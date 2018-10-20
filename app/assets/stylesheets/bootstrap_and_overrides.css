@@ -16,12 +16,25 @@ p {
   font-family: 'Courier New', Courier, monospace  
 }
 table{
-  font-family: 'Courier New', Courier, monospace  
+  font-family: 'Courier New', Courier, monospace;  
+  
+}
+/*table index*/
+
+td {
+  margin-left:  10px;
 }
 table a {
-  color: #000
+  color: #000;
 } 
 
+.navbar-default {
+  /*height: 50px;*/
+  background-color: #87CEEB;
+  border-bottom: 2px solid #99ddff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  
+}
 /*body*/
 body{
   display: block;

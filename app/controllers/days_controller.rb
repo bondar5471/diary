@@ -2,7 +2,7 @@
 
 class DaysController < ApplicationController
   before_action :set_day, only: %i[show edit update destroy]
-
+  #before_action :authenticate_user!
   def index
     @days = Day.all
   end
