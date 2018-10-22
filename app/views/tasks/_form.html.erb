@@ -1,0 +1,6 @@
+<%= form_for([@day, @day.tasks.build]) do |f| %>
+  <p>Add tasks on day</p>
+  <%= f.text_area :list %>
+  <br>
+  <%= f.submit 'Add tasks', class: 'btn btn-primary' %>
+<% end %>

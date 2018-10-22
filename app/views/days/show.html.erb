@@ -2,8 +2,15 @@
   <h2>Day</h2>
 	<%= @day.date.try(:strftime, '%B %d, %Y') %>
 	<br>
+	<p>Success of the day</p>
 	<%= @day.successful %>
 	<br>
+	<p>Report on day</p>
 	<%= @day.report %>
+	<br>
+	<h2>Tasks on day</h2>
+	<%= render "tasks/task" %>
+	<%= render "tasks/form" %>
+
 	<%= link_to  "Back", days_path %>
 </div>
