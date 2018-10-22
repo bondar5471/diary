@@ -45,7 +45,31 @@ class DaysController < ApplicationController
     end
   end
 
+  def create_task
+    @task = Task.new(task_params)
+    if @task.save
+      redirect_to days_path
+    else
+      render :new
+    end
+  end
+
+  def destroy_task
+    @task = Task.find(params[:id])
+    if @task.destroy
+      flash[:successful] = 'Task on day detete'
+      redirect_to days_url
+    else
+      flash[:error] = 'Something wen wrong'
+      redirect_to days_url
+    end
+  end
+
   private
+
+  def task_params
+    params.require(:task).permit(:list)
+  end
 
   def set_day
     @day = Day.find(params[:id])
