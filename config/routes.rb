@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :user
 
-  resources :days
+  resources :days do
+  resources :tasks, only: [:create, :destroy]
+  end
 end
