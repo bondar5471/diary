@@ -17,10 +17,10 @@ before_action :find_day
   @task = Task.find(params[:id])
     if @task.destroy
       flash[:success] = 'Object was successfully deleted.'
-      redirect_to tasks_path
+      redirect_to @day
     else
       flash[:error] = 'Something went wrong'
-      redirect_to tasks_path
+      redirect_to @day
     end
   end
   
