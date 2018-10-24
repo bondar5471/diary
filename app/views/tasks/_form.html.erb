@@ -1,6 +1,6 @@
-<%= form_for([@day, @day.tasks.build]) do |f| %>
+<%= form_for([@day, @day.tasks.build], remote: true, html: { id: "new_task"}) do |f| %>
   <p>Add tasks on day</p>
   <%= f.text_area :list %>
   <br>
-  <%= f.submit 'Add tasks', class: 'btn btn-primary' %>
+  <%= f.submit 'Add tasks',remote: true, class: 'btn btn-primary' %> 
 <% end %>

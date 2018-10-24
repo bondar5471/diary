@@ -1,0 +1,9 @@
+$('.tasks').html('<%= j render 'tasks/task'  %>');
+$('#task_list').val('');
+  $('task-delete-link').click(function (e) {
+    e.preventDefault();
+    $(this).hide();
+    var task_id = $(this).parents('.task').data('taskId')
+    $('#delete-task-link-' + task_id).hide();
+});
+

@@ -1,3 +1,9 @@
-<% @tasks.each do |task| %>
-<p><%= task.list %></p>
+<div class="task-container">
+<% @day.tasks.each do |task| %>
+<p><b><%= task.list %></b></p>
+<u><%= task.created_at.try(:strftime, '%B %d, %Y') %></u>
+<%= link_to "delete task", day_task_path(task.day, task), remote: true, method: :delete %>
+<p></p>
 <%end%>
+</div>
+

@@ -1,29 +1,17 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-before_action :find_day
+  before_action :find_day
+  respond_to :html, :js
   def create
-    @task = @day.tasks.create(task_params)
-    if @task.save
-      flash[:success] = "Successfully created"
-      redirect_to @day
-    else
-      flash[:error] = "Something went wrong"
-      render :new
-    end
+    @day.tasks.create(task_params)
   end
 
   def destroy
-  @task = Task.find(params[:id])
-    if @task.destroy
-      flash[:success] = 'Object was successfully deleted.'
-      redirect_to @day
-    else
-      flash[:error] = 'Something went wrong'
-      redirect_to @day
-    end
+    @task = Task.find(params[:id])
+    @task.destroy
   end
-  
+
   private
 
   def find_day
