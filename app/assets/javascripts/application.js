@@ -15,7 +15,17 @@
 //= require jquery_ujs
 //= require activestorage
 //= require turbolinks
-
-
-var App = App || {};
-App.cable = ActionCable.createConsumer();
+$(document).ready(function(){
+  $("button").click(function(){ 
+    var task = document.getElementById("task").value;
+    confirm(task); 
+    $.ajax({
+        url: '/days/:day_id/tasks',
+        type:"POST",
+        dataType: "json",
+        success: function(data) {
+            console.log(data)
+        }
+    });
+  });
+});

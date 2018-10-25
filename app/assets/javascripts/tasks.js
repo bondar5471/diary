@@ -1,17 +1,8 @@
-$(function(){
-  $("form").submit(function(event){
-    event.preventDefault();
-
-    var action = $(this).attr('action');
-    var method = $(this).attr('method');
-    var data = $(this).serializeArray();
-
-    $.ajax({
-      method: method,
-      url: action,
-      data: data,
-      dataType: 'script'
-    });
-
+$(document).ready(function() {
+  $('.sendtask').click(function() {
+        var params = $('input');
+        $.post('/post.php', params).done(function(data) {
+              alert(data);
+        });
   });
 });

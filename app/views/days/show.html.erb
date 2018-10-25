@@ -10,6 +10,12 @@
 	<br>
 	<h2>Tasks on day</h2>
 	<%= render "tasks/task" %>
-	<%= render "tasks/form" %>
+
+	<div class="taskslist">
+		<p>Add tasks on day</p>
+		<input type="text" name="task" id="task"/>
+		<br>
+		<button>Add task</button>
+	</div>
 	<%= link_to  "Back", days_path %>
 </div>
