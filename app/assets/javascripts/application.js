@@ -14,7 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require activestorage
-//= require turbolinks
+//= require turbolinks   
 $(document).ready(function(){
   $("button").click(function(){ 
     var task = document.getElementById("task").value;
@@ -23,8 +23,8 @@ $(document).ready(function(){
         url: '/days/:day_id/tasks',
         type:"POST",
         dataType: "json",
-        success: function(data) {
-            console.log(data)
+        success: function() {
+            console.log(task)
         }
     });
   });
