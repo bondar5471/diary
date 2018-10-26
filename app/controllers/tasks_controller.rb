@@ -2,8 +2,9 @@
 
 class TasksController < ApplicationController
   before_action :find_day
-  respond_to :html, :js
+  respond_to  :json
   def create
+    byebug
     @day.tasks.create(task_params)
   end
 
