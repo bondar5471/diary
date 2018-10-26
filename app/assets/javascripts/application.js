@@ -16,15 +16,19 @@
 //= require activestorage
 //= require turbolinks   
 $(document).ready(function(){
-  $("button").click(function(){ 
+  $(".addtask").click(function(){
     var task = document.getElementById("task").value;
-    confirm(task); 
+    debugger;
+    alert(task); 
     $.ajax({
-        url: '/days/:day_id/tasks',
-        type:"POST",
-        dataType: "json",
-        success: function() {
-            console.log(task)
+        url: "/days/:day_id/tasks",
+        type: "POST",
+        data: ({task: task}),
+        format: "json",
+        success: function(data) {
+          debugger;
+          $('.task-container').append(task);
+          
         }
     });
   });
