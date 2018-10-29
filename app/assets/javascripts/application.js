@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require activestorage
 //= require turbolinks   
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   $(".sendtask").click(function(){
     var task = document.getElementById("task").value; 
     $.ajax({

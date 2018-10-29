@@ -1,9 +1,8 @@
-# frozen_string_literal: true
-
 class TasksController < ApplicationController
-  before_action :find_day, only: [:create, :destroy]
+  before_action :find_day
   respond_to :json
   def create
+    byebug
     @day.tasks.create(task_params)
     respond_to do |format|
       format.json { render json: @day.tasks.last }
@@ -18,8 +17,7 @@ class TasksController < ApplicationController
   private
 
   def find_day
-    byebug
-    @day = Day.find(params[:day_id])
+    @day = Day.find(id: @day)
   end
 
   def task_params
