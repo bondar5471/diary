@@ -2,10 +2,14 @@
 
 class TasksController < ApplicationController
   before_action :find_day
-  respond_to  :json
+  respond_to :json
+
   def create
     byebug
     @day.tasks.create(task_params)
+    respond_to do |format|
+    render json: @day.tasks.last
+    end
   end
 
   def destroy
@@ -16,6 +20,7 @@ class TasksController < ApplicationController
   private
 
   def find_day
+    byebug
     @day = Day.find(params[:day_id])
   end
 

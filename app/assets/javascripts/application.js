@@ -16,18 +16,19 @@
 //= require activestorage
 //= require turbolinks   
 $(document).ready(function(){
-  $(".addtask").click(function(){
+  $(".sendtask").click(function(){
     var task = document.getElementById("task").value;
     debugger;
     alert(task); 
     $.ajax({
         url: "/days/:day_id/tasks",
         type: "POST",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data: ({task: task}),
         format: "json",
         success: function(data) {
           debugger;
-          $('.task-container').append(task);
+          $('.taskslist').append(task);
           
         }
     });
