@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DaysController < ApplicationController
   before_action :set_day, only: %i[show edit update destroy]
   # before_action :authenticate_user!
@@ -7,7 +9,7 @@ class DaysController < ApplicationController
   end
 
   def show
-    @tasks = Task.where(day_id: @day)
+  
   end
 
   def new
