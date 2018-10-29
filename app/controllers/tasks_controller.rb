@@ -19,11 +19,11 @@ class TasksController < ApplicationController
   end
 
   def find_day
-    byebug
     @day = Day.find(params[:day_id])
   end
 
   def task_params
-    params.require(:task).permit(:list)
+    byebug
+    params.require(:task).permit(:day_id, :list)
   end
 end
