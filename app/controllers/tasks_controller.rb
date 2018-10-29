@@ -17,7 +17,8 @@ class TasksController < ApplicationController
   private
 
   def find_day
-    @day = Day.find(id: @day)
+    byebug
+    @day = Day.find(params[:day_id])
   end
 
   def task_params

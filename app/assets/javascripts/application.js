@@ -18,6 +18,7 @@
 $(document).on('turbolinks:load', function() {
   $(".sendtask").click(function(){
     var task = document.getElementById("task").value; 
+    debugger;
     $.ajax({
         url: "/days/:day_id/tasks",
         type: "POST",
@@ -25,7 +26,6 @@ $(document).on('turbolinks:load', function() {
         data: ({task: task}),
         format: "json",
         success: function(data) {
-          debugger;
           $('.taskslist').append(task);
           
         }
