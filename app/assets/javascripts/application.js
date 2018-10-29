@@ -17,9 +17,7 @@
 //= require turbolinks   
 $(document).ready(function(){
   $(".sendtask").click(function(){
-    var task = document.getElementById("task").value;
-    debugger;
-    alert(task); 
+    var task = document.getElementById("task").value; 
     $.ajax({
         url: "/days/:day_id/tasks",
         type: "POST",

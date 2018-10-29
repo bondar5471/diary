@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :find_day
+  before_action :find_day, only: [:create, :destroy]
   respond_to :json
-
   def create
-    byebug
     @day.tasks.create(task_params)
     respond_to do |format|
-    render json: @day.tasks.last
+      format.json { render json: @day.tasks.last }
     end
   end
 

@@ -3,13 +3,13 @@
 class DaysController < ApplicationController
   before_action :set_day, only: %i[show edit update destroy]
   # before_action :authenticate_user!
-  respond_to :html, :js
+  respond_to :html, :json
   def index
     @days = Day.all
   end
 
   def show
-    #@tasks = Task.where(day_id: @day)
+    @tasks = Task.where(day_id: @day)
   end
 
   def new
