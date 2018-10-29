@@ -22,7 +22,7 @@ $(document).on('turbolinks:load', function() {
     $.ajax({
         url: "/days/:day_id/tasks",
         type: "POST",
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data: ({task: task}),
         format: "json",
         success: function(data) {

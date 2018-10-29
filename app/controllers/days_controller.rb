@@ -9,7 +9,7 @@ class DaysController < ApplicationController
   end
 
   def show
-    @tasks = Task.where(day_id: @day)
+   # @tasks = Task.where(day_id: @day)
   end
 
   def new
