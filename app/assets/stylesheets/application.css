@@ -20,3 +20,7 @@ p {
 body {
       background-color: #E0FFFF  
   }
+  link{
+    display: block;
+    visibility: visible;
+  }

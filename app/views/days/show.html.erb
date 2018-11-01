@@ -3,26 +3,26 @@
 	<%= @day.date.try(:strftime, '%B %d, %Y') %>
 	<br>
 	<p>Success of the day</p>
-	<%= @day.successful %>
+	<b><%= @day.successful %></b>
 	<br>
 	<p>Report on day</p>
-	<%= @day.report %>
+	<b><%= @day.report %></b>
 	<br>
 	<h2>Tasks on day</h2>
 	<div data-day_id="<%= @day.id %>", class="task-container">
+		<div id="tasklist">
 		<% @day.tasks.each do |task| %>
 		<p><b><%= task.list %></b></p>
-		<u><%= task.created_at.try(:strftime, '%B %d, %Y') %></u>
 		<%= link_to "delete task", day_task_path(task.day, task), remote: true, method: :delete %>
 		<p></p>
 		<%end%>
+	    </div>
 		<p>Add tasks on day</p>
 		<input type="text" name="task" id="task"/>
-		<br>
-		<div class="sendtask"><button>Add task</button></div>
+		<hr>
+		<div class="sendtask"><button >Add task</button></div>
 	</div>
 	</div>
 	<br>
-	
 	<%= link_to  "Back", days_path %>
 </div>

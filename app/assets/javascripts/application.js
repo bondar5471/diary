@@ -19,17 +19,42 @@ $(document).on('turbolinks:load', function() {
   $(".sendtask").click(function(){
     var task = document.getElementById("task").value; 
     var current_day = $(this).parents('.task-container');
-    debugger;
+    function tasksItem(){
+      
+
+    } 
     $.ajax({
         url: "/days/:day_id/tasks".replace(":day_id",$(current_day).attr('data-day_id')),
         type: "POST",
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: ({task: task}),
-        format: "json",
+        dataType: "json",
+        data: ({task: {list: task}}),
         success: function(data) {
-          $('.taskslist').append(task);
+          $('#task').css('border-color','seagreen');
+          var element = document.getElementById('tasklist');
+          var text = data.list;
+          var br = document.createElement('br');
+          var p = document.createElement('p');
+            p.innerText = text;
+          var link = document.createElement('a');
+            link.innerHTML = "delete task";
+            link.setAttribute ("data-method", "delete");
+            link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id'))+ data.id);
+            element.appendChild(br);
+            element.appendChild(p);
+            element.appendChild(link);
+          $('#task').val(''); 
+        },
+        error: 
           
-        }
+          $('#task').each(function(){
+            debugger;
+              if(!$(this).val() || $(this).val() == ""){
+                 $(this).css('border-color','red');
+                 send = false;
+                 alert('Input field is empty!')
+              }
+        }),
     });
   });
 });

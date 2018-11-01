@@ -9,7 +9,7 @@ class DaysController < ApplicationController
   end
 
   def show
-   # @tasks = Task.where(day_id: @day)
+    # @tasks = Task.where(day_id: @day)
   end
 
   def new
@@ -22,7 +22,7 @@ class DaysController < ApplicationController
       flash[:success] = 'Day create.'
       redirect_to days_path
     else
-      flash[:success] = 'Date and Report must be filled.'
+      flash[:error] = 'Date and Report must be filled.'
       render :new
     end
   end
