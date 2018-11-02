@@ -21,28 +21,27 @@ $(document).on('turbolinks:load', function() {
     var task = document.getElementById("task").value; 
     var current_day = $(this).parents('.task-container');
     var element = document.getElementById('tasklist');
-    var br = document.createElement('br');
     var p = document.createElement('p');
+    var idday = $(current_day).attr('data-day_id');
     function taskItemCreate(){
-      debugger;
       var link = document.createElement('a');
         link.innerHTML = "delete task";
         link.setAttribute ("data-method", "delete");
-        link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id')));
-    
+        link.href = ("/days/:day_id/tasks/".replace(":day_id", idday));
+        link.setAttribute("data-remote", "true")
       return function() {
         return link;
       };
     }
     var createlink = taskItemCreate();
     $.ajax({
-        url: "/days/:day_id/tasks".replace(":day_id",$(current_day).attr('data-day_id')),
+        url: "/days/:day_id/tasks".replace(":day_id", idday),
         type: "POST",
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         dataType: "json",
         data: ({task: {list: task}}),
-
         success: function(data) {
+          debugger;
           $('#task').css('border-color','seagreen');
           var text = data.list;
             p.innerText = text;
@@ -50,7 +49,7 @@ $(document).on('turbolinks:load', function() {
           //   link.innerHTML = "delete task";
           //   link.setAttribute ("data-method", "delete");
           //   link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id'))+ data.id);
-          element.appendChild(br);
+          //link.setAttribute("data-remote", "true")
           element.appendChild(p);
           element.appendChild(createlink());
           $('#task').val(''); 
@@ -62,7 +61,7 @@ $(document).on('turbolinks:load', function() {
                  send = false;
                  alert('Input field is empty!');
               }
-        }),
+          }),
     });
   });
 });

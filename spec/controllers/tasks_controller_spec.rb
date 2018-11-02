@@ -9,12 +9,12 @@ RSpec.describe TasksController, type: :controller do
     context 'with valid attributes' do
       it 'saves a new task in the database' do
         expect do
-          post :create, params: { task: attributes_for(:task), day_id: day, format: :js }
+          post :create, params: { task: attributes_for(:task), day_id: day, format: :json }
         end.to change(day.tasks, :count).by(1)
       end
 
       it 'render create template' do
-        post :create, params: { task: attributes_for(:task), task_id: task, format: :js }
+        post :create, params: { task: attributes_for(:task), task_id: task, format: :json }
         expect(response).to render_template :create
       end
     end
