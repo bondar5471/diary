@@ -17,44 +17,54 @@
 //= require turbolinks   
 $(document).on('turbolinks:load', function() {
   $(".sendtask").click(function(){
+    debugger;
     var task = document.getElementById("task").value; 
     var current_day = $(this).parents('.task-container');
-    function tasksItem(){
-      
-
-    } 
+    var element = document.getElementById('tasklist');
+    var br = document.createElement('br');
+    var p = document.createElement('p');
+    function taskItemCreate(){
+      debugger;
+      var link = document.createElement('a');
+        link.innerHTML = "delete task";
+        link.setAttribute ("data-method", "delete");
+        link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id')));
+    
+      return function() {
+        return link;
+      };
+    }
+    var createlink = taskItemCreate();
     $.ajax({
         url: "/days/:day_id/tasks".replace(":day_id",$(current_day).attr('data-day_id')),
         type: "POST",
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         dataType: "json",
         data: ({task: {list: task}}),
+
         success: function(data) {
           $('#task').css('border-color','seagreen');
-          var element = document.getElementById('tasklist');
           var text = data.list;
-          var br = document.createElement('br');
-          var p = document.createElement('p');
             p.innerText = text;
-          var link = document.createElement('a');
-            link.innerHTML = "delete task";
-            link.setAttribute ("data-method", "delete");
-            link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id'))+ data.id);
-            element.appendChild(br);
-            element.appendChild(p);
-            element.appendChild(link);
+          // var link = document.createElement('a');
+          //   link.innerHTML = "delete task";
+          //   link.setAttribute ("data-method", "delete");
+          //   link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id'))+ data.id);
+          element.appendChild(br);
+          element.appendChild(p);
+          element.appendChild(createlink());
           $('#task').val(''); 
         },
-        error: 
-          
+        error:  
           $('#task').each(function(){
-            debugger;
               if(!$(this).val() || $(this).val() == ""){
                  $(this).css('border-color','red');
                  send = false;
-                 alert('Input field is empty!')
+                 alert('Input field is empty!');
               }
         }),
     });
   });
 });
+
+        
