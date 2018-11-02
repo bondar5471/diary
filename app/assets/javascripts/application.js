@@ -45,11 +45,6 @@ $(document).on('turbolinks:load', function() {
           $('#task').css('border-color','seagreen');
           var text = data.list;
             p.innerText = text;
-          // var link = document.createElement('a');
-          //   link.innerHTML = "delete task";
-          //   link.setAttribute ("data-method", "delete");
-          //   link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id'))+ data.id);
-          //link.setAttribute("data-remote", "true")
           element.appendChild(p);
           element.appendChild(createlink());
           $('#task').val(''); 
