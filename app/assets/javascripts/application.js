@@ -14,28 +14,29 @@
 //= require jquery
 //= require jquery_ujs
 //= require activestorage
-//= require turbolinks   
+//= require turbolinks    
+
+
 $(document).on('turbolinks:load', function() {
-  $(".sendtask").click(function(){
-    debugger;
+  $(".sendtask").click(function(){  
     var task = document.getElementById("task").value; 
     var current_day = $(this).parents('.task-container');
     var element = document.getElementById('tasklist');
     var p = document.createElement('p');
-    var idday = $(current_day).attr('data-day_id');
-    function taskItemCreate(){
-      var link = document.createElement('a');
-        link.innerHTML = "delete task";
-        link.setAttribute ("data-method", "delete");
-        link.href = ("/days/:day_id/tasks/".replace(":day_id", idday));
-        link.setAttribute("data-remote", "true")
-      return function() {
-        return link;
-      };
-    }
-    var createlink = taskItemCreate();
+    var idDay = $(current_day).attr('data-day_id');
+    // function taskItemCreate(){
+    //   var link = document.createElement('a');
+    //     link.innerHTML = "delete task";
+    //     link.setAttribute ("data-method", "delete");
+    //     link.href = ("/days/:day_id/tasks/".replace(":day_id", idDay));
+    //     link.setAttribute("data-remote", "true");
+    //   return function() {
+    //     return link;
+    //   };
+    // }
+    //var createlink = taskItemCreate();
     $.ajax({
-        url: "/days/:day_id/tasks".replace(":day_id", idday),
+        url: "/days/:day_id/tasks".replace(":day_id", idDay),
         type: "POST",
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         dataType: "json",
@@ -43,11 +44,18 @@ $(document).on('turbolinks:load', function() {
         success: function(data) {
           debugger;
           $('#task').css('border-color','seagreen');
+          var link = document.createElement('a');
+          link.innerHTML = "delete task";
+          link.setAttribute ("data-method", "delete");
+          link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id'))+ data.id);;
+          link.setAttribute("data-remote", "true");
+
           var text = data.list;
             p.innerText = text;
           element.appendChild(p);
-          element.appendChild(createlink());
+          element.appendChild(link);
           $('#task').val(''); 
+    
         },
         error:  
           $('#task').each(function(){
