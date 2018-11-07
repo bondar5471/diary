@@ -17,12 +17,25 @@ h2 {
 p {
     font-family: 'Courier New', Courier, monospace  
   }
- 
-body {
-      background-color: #E0FFFF  
-  }
-  link{
+  link {
     display: block;
     visibility: visible;
   }
+ 
+body {
+  background-color: #E0FFFF;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+     }
 
+footer{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  text-align: center;
+  background-color: #87CEEB;
+  border-top: 2px solid #99ddff;
+  height: 50px;
+  margin-top: 50px;
+
+}
+  

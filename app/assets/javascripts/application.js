@@ -20,7 +20,7 @@ $(document).on('turbolinks:load', function() {
   $(".sendtask").click(function(){  
     var task = document.getElementById("task").value; 
     var current_day = $(this).parents('.task-container');
-    var element = document.getElementById('tasklist');
+    var container = document.getElementById('tasklist');
     var idDay = $(current_day).attr('data-day_id');
 
     $.ajax({
@@ -30,26 +30,16 @@ $(document).on('turbolinks:load', function() {
         dataType: "json",
         data: ({ task: { list: task } }),
         success: function(data) {
-          debugger;
-          addNewTask(data, element);
-          $('#task').val(''); 
-    
+          addNewTask(data, container);           
         },
         error:  
-          $('#task').each(function(){
-              if(!$(this).val() || $(this).val() == ""){
-                 $(this).css('border-color','red');
-                 send = false;
-                 alert('Task field is empty!');
-              }
-          }),
+          notValidTask()
     });
   });
 });
 
 function addNewTask(task, tasksListDiv) {
   $('#task').css('border-color','seagreen');
-  debugger;
   var link = document.createElement('a');
   link.innerHTML = "delete task";
   link.setAttribute ("data-method", "delete");
@@ -61,5 +51,14 @@ function addNewTask(task, tasksListDiv) {
 
   tasksListDiv.appendChild(paragraph);
   tasksListDiv.appendChild(link);
+  $('#task').val('');
 }
-        
+function notValidTask () {
+  $('#task').each(function(){
+    if(!$(this).val() || $(this).val() == ""){
+      $(this).css('border-color','red');
+      send = false;
+      alert('Task field is empty!');
+      }
+    })
+  }        

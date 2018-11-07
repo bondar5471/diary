@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     else
       render json: @task, status: 422
     end
-end
+  end
 
   def destroy
     @task = Task.find(params[:id])
