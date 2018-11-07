@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :find_day
   respond_to :json
+
+  before_action :find_day
+
   def create
     @task = @day.tasks.create(task_params)
-    respond_to do |format|
-      if @task.save
-        format.json { render json: @task, status: 200 }
-      else
-        format.json { render json: @task, status: 422 }
-      end
+
+    if @task.persisted?
+      render json: @task, status: 200
+    else
+      render json: @task, status: 422
     end
-  end
+end
 
   def destroy
     @task = Task.find(params[:id])

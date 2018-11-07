@@ -14,46 +14,24 @@
 //= require jquery
 //= require jquery_ujs
 //= require activestorage
-//= require turbolinks    
-
+//= require turbolinks
 
 $(document).on('turbolinks:load', function() {
   $(".sendtask").click(function(){  
     var task = document.getElementById("task").value; 
     var current_day = $(this).parents('.task-container');
     var element = document.getElementById('tasklist');
-    var p = document.createElement('p');
     var idDay = $(current_day).attr('data-day_id');
-    // function taskItemCreate(){
-    //   var link = document.createElement('a');
-    //     link.innerHTML = "delete task";
-    //     link.setAttribute ("data-method", "delete");
-    //     link.href = ("/days/:day_id/tasks/".replace(":day_id", idDay));
-    //     link.setAttribute("data-remote", "true");
-    //   return function() {
-    //     return link;
-    //   };
-    // }
-    //var createlink = taskItemCreate();
+
     $.ajax({
         url: "/days/:day_id/tasks".replace(":day_id", idDay),
         type: "POST",
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         dataType: "json",
-        data: ({task: {list: task}}),
+        data: ({ task: { list: task } }),
         success: function(data) {
           debugger;
-          $('#task').css('border-color','seagreen');
-          var link = document.createElement('a');
-          link.innerHTML = "delete task";
-          link.setAttribute ("data-method", "delete");
-          link.href = ("/days/:day_id/tasks/".replace(":day_id",$(current_day).attr('data-day_id'))+ data.id);;
-          link.setAttribute("data-remote", "true");
-
-          var text = data.list;
-            p.innerText = text;
-          element.appendChild(p);
-          element.appendChild(link);
+          addNewTask(data, element);
           $('#task').val(''); 
     
         },
@@ -62,11 +40,26 @@ $(document).on('turbolinks:load', function() {
               if(!$(this).val() || $(this).val() == ""){
                  $(this).css('border-color','red');
                  send = false;
-                 alert('Input field is empty!');
+                 alert('Task field is empty!');
               }
           }),
     });
   });
 });
 
+function addNewTask(task, tasksListDiv) {
+  $('#task').css('border-color','seagreen');
+  debugger;
+  var link = document.createElement('a');
+  link.innerHTML = "delete task";
+  link.setAttribute ("data-method", "delete");
+  link.href = ("/days/:day_id/tasks/".replace(":day_id", task.day_id) + task.id);
+  link.setAttribute("data-remote", "true");
+
+  var paragraph = document.createElement('p')
+  paragraph.innerText = task.list;
+
+  tasksListDiv.appendChild(paragraph);
+  tasksListDiv.appendChild(link);
+}
         
