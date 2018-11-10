@@ -1,0 +1,12 @@
+<ul class="calendar">
+  <%  @day_months.each do |month_name,days|  %>
+  <p><%= month_name.strftime('%B, %Y') %><p>
+  <table> 
+    <% (1..days_in_month(month_name.month,month_name.year)).each do |day| %>
+      <td>
+        <%= day.successfull %> 
+      </td>
+    <% end %> 
+  </table>
+  <% end %> 
+</ul>

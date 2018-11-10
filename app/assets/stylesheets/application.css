@@ -17,17 +17,41 @@ h2 {
 p {
     font-family: 'Courier New', Courier, monospace  
   }
+
+  td {
+    margin: 10px;
+  }
+
+  tr {
+    margin: 10px;
+  }
   link {
     display: block;
     visibility: visible;
   }
+
+  button {
+      border-radius: 10px;
+      background-color: #87fafa;
+      border: none;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      height: 60px;
+      width: 150px;
+      cursor: pointer;
+      margin: 5px;
+      border-color: darkcyan;
+      border-style: solid; 
+  }
  
 body {
+  
   background-color: #E0FFFF;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
-     }
+}    
 
 footer{
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -38,4 +62,28 @@ footer{
   margin-top: 50px;
 
 }
-  
+
+/*calendar*/
+thead.calendar {
+  width: 100%;
+}
+ul.calendar li {
+  display: inline-block;
+  padding-right: 20px;
+  padding-left: 20px;
+} 
+.calendar td{
+  background: rgb(112, 112, 112);
+  text-align: center;
+  font-size: 15px;
+  height: 20px;
+  width: 20px;
+  border: 1px solid rgb(19, 19, 19);
+  padding: 3px;
+} 
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}

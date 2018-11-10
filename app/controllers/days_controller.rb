@@ -2,15 +2,13 @@
 
 class DaysController < ApplicationController
   before_action :set_day, only: %i[show edit update destroy]
-  # before_action :authenticate_user!
   respond_to :html, :json
   def index
-    @days = Day.all
+    @days = Day.order(:date)
+    @day_months = @days.group_by { |day| day.date.beginning_of_month }
   end
 
-  def show
-    # @tasks = Task.where(day_id: @day)
-  end
+  def show; end
 
   def new
     @day = Day.new
