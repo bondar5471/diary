@@ -1,11 +1,16 @@
 <ul class="calendar">
-  <%  @day_months.each do |month_name,days|  %>
-  <p><%= month_name.strftime('%B, %Y') %><p>
-  <table> 
-    <% (1..days_in_month(month_name.month,month_name.year)).each do |day| %>
+  <%  @day_months.each do |month_name, select_days|  %>
+  <p><%= month_name.strftime('%B, %Y') %><p>  
+    <!-- <select>
+      <%@day_months.each_key do |key|%>
+      <option value="key.strftime('%B')"> <%=key.strftime('%B')%> </option>
+    </select>
+    <%end%> -->
+    <table>
+    <% (1..days_in_month(month_name.month,month_name.year)).each do |day| %>  
       <td>
-        <%= day.successfull %> 
-      </td>
+        <%= display_day(day, select_days) %> 
+      </td>  
     <% end %> 
   </table>
   <% end %> 

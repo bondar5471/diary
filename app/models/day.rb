@@ -7,5 +7,4 @@ class Day < ApplicationRecord
 
   # scope :successday, -> { where(successful: true) }
   # scope :notsuccessday, -> { where(successful: false) }
-
 end

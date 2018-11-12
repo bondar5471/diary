@@ -11,7 +11,7 @@
       <% @days.each do |day| %>
         <tr>
           <td><%= formated_date(day.date) %></td>
-          <td class="<%=day.successful ? 'glyphicon glyphicon-ok' : 'uccess glyphicon glyphicon-remove'%>"><%= day.successful %></td>
+          <td class="<%=day.successful ? 'glyphicon glyphicon-ok' : 'uccess glyphicon glyphicon-remove'%>"><% day.successful %></td>
           <td><%= day.report %></td>
           <td class="btn btn-success"><%= link_to "Show", day %></td>
           <td class="btn btn-warning"><%= link_to "Edit", edit_day_path(day) %></td>

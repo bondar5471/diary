@@ -64,26 +64,19 @@ footer{
 }
 
 /*calendar*/
-thead.calendar {
-  width: 100%;
-}
-ul.calendar li {
-  display: inline-block;
-  padding-right: 20px;
-  padding-left: 20px;
-} 
+
 .calendar td{
-  background: rgb(112, 112, 112);
+  background: #87CEEB;
   text-align: center;
   font-size: 15px;
   height: 20px;
-  width: 20px;
+  width: 22px;
   border: 1px solid rgb(19, 19, 19);
-  padding: 3px;
+  color: #000;
 } 
 .green {
-  background-color: green;
+  background-color: #4cae4c;
 }
 .red {
-  background-color: red;
+  background-color: #d43f3a;
 }
