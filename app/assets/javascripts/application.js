@@ -62,4 +62,46 @@ function notValidTask () {
       alert('Task field is empty!');
       }
     })
-  } 
+  }
+$(document).on('turbolinks:load', function() {
+  var board = document.getElementById('dropnotice');
+
+  board.onmousedown = function(e) {
+
+  var coords = getCoords(board);
+  var shiftX = e.pageX - coords.left;
+  var shiftY = e.pageY - coords.top;
+
+  board.style.position = 'absolute';
+  document.body.appendChild(board);
+  moveAt(e);
+
+  board.style.zIndex = 1000;
+
+  function moveAt(e) {
+    board.style.left = e.pageX - shiftX + 'px';
+    board.style.top = e.pageY - shiftY + 'px';
+  }
+
+  document.onmousemove = function(e) {
+    moveAt(e);
+  };
+
+  board.onmouseup = function() {
+    document.onmousemove = null;
+    board.onmouseup = null;
+  };
+
+}
+
+board.ondragstart = function() {
+  return false;
+};
+
+function getCoords(elem) {
+  var box = elem.getBoundingClientRect();
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+  };
+}})
