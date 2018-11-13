@@ -19,7 +19,6 @@
 $(document).on('turbolinks:load', function() {
 
   $(".sendtask").click(function(){  
-    debugger;
     var task = document.getElementById("task").value; 
     var current_day = $(this).parents('.task-container');
     var container = document.getElementById('tasklist');
@@ -32,7 +31,6 @@ $(document).on('turbolinks:load', function() {
         dataType: "json",
         data: ({ task: { list: task } }),
         success: function(data) {
-          debugger;
           addNewTask(data, container);           
         },
         error:  
@@ -42,7 +40,6 @@ $(document).on('turbolinks:load', function() {
 });
 
 function addNewTask(task, tasksListDiv) {
-  debugger;
   $('#task').css('border-color','seagreen');
   var link = document.createElement('a');
   link.innerHTML = "delete task";
@@ -58,7 +55,6 @@ function addNewTask(task, tasksListDiv) {
   $('#task').val('');
 }
 function notValidTask () {
-  debugger;
   $('#task').each(function(){
     if(!$(this).val() || $(this).val() == ""){
       $(this).css('border-color','red');
@@ -66,5 +62,4 @@ function notValidTask () {
       alert('Task field is empty!');
       }
     })
-  }  
-     
+  } 
