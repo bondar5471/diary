@@ -9,10 +9,9 @@ class NoticesController < ApplicationController
   def create
     @notice = Notice.create(notice_params)
 
-    if @notice.persisted?
-      render json: @notice, status: 200
-    else
-      render json: @notice, status: 422
+    respond_to do |format|
+      format.html { redirect_to days_path }
+      format.json { head :text, :title }
     end
   end
 

@@ -11,7 +11,7 @@
           <tr>
             <td><%= notice.title %></td>
             <td><%= notice.text %></td>            
-            <td><%= link_to 'Destroy', notice_path(notice), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
+            <td><%= link_to 'Destroy', notice_path(notice), data: {:confirm => 'Are you sure?'}, :class => "badge badge-pill badge-danger", :method => :delete %></td>
           </tr>
         <%end%>
     </tbody>
