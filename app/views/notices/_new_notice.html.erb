@@ -1,0 +1,29 @@
+<div id="dropnotice">
+<table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Notice</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% Notice.all.each do |notice| %>
+          <tr>
+            <td><%= notice.title %></td>
+            <td><%= notice.text %></td>            
+            <td><%= link_to 'Destroy', notice_path(notice), data: {:confirm => 'Are you sure?'}, :class => "badge badge-pill badge-danger", :method => :delete %></td>
+          </tr>
+        <%end%>
+    </tbody>
+  </table>
+<%= form_for Notice.create do |f| %>
+  <b>Title</b>
+  <%= f.text_field :title %>
+  <b>Body</b>
+  <%= f.text_area :text %>
+  <p>Add notice</p>
+<%= f.submit 'Create', class: 'btn btn-success' %>
+<%end%>
+</div>
+
+

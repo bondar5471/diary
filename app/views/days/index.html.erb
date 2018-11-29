@@ -10,15 +10,16 @@
   <tbody>
       <% @days.each do |day| %>
         <tr>
-          <td><%= day.date.try(:strftime, '%B %d, %Y') %></td>
-          <td><%= day.successful %></td>
+          <td><%= formated_date(day.date) %></td>
+          <td class="<%=day.successful ? 'glyphicon glyphicon-ok' : 'uccess glyphicon glyphicon-remove'%>"><% day.successful %></td>
           <td><%= day.report %></td>
-          <td class="btn btn-success"><%= link_to "Show", day %></td>
-          <td class="btn btn-warning"><%= link_to "Edit", edit_day_path(day) %></td>
-          <td class="btn btn-danger"><%= link_to "Delete", day, method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <td><%= button_to "Show", day ,:method => "get",:class => "btn btn-success" %></td>
+          <td><%= button_to "Edit", edit_day_path(day), :method => "get", :class => "btn btn-warning" %></td>
+          <td><%= button_to "Delete", day, method: :delete, :class => "btn btn-danger" %></td>
         </tr>
       <%end%>
   </tbody>
 </table>
 <br>
+<%= render  "calendar" %>
 <span class="btn btn-default btn-lg" ><%= link_to "New day", new_day_path %></span>

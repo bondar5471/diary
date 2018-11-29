@@ -2,9 +2,10 @@
 
 class DaysController < ApplicationController
   before_action :set_day, only: %i[show edit update destroy]
-  #before_action :authenticate_user!
+  respond_to :html, :json
   def index
-    @days = Day.all
+    @days = Day.order(:date)
+    @day_months = @days.group_by { |day| day.date.beginning_of_month }
   end
 
   def show; end
@@ -19,7 +20,7 @@ class DaysController < ApplicationController
       flash[:success] = 'Day create.'
       redirect_to days_path
     else
-      flash[:success] = 'Date and Report must be filled.'
+      flash[:error] = 'Date and Report must be filled.'
       render :new
     end
   end

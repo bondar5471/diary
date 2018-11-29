@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user do
+  factory :notice do
+    title 'MyString'
+    text 'MyText'
   end
 end

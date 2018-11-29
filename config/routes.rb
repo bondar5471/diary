@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: "days#index"
+  root to: 'days#index'
 
   devise_for :user
-
-  resources :days
+  resources :notices
+  resources :days do
+    resources :tasks, only: %i[new create destroy]
+  end
 end
